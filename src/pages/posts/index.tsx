@@ -1,6 +1,6 @@
 import Link  from "next/link"
 import { useEffect, useState } from 'react';
-import { Post } from "@/types/types"
+import { PostFields } from "@/types/types"
 import { gql } from '@apollo/client';
 import client from "@/apollo-client";
 
@@ -20,6 +20,10 @@ const GET_POSTS = gql`
 `;
 const Posts = () => {
     const [posts, setPosts] = useState([]);
+    // const posts: Post[] = [
+    //     { id: '1', title: 'First Post', content: 'Content of the first post' },
+    //     { id: '2', title: 'Second Post', content: 'Content of the second post' },
+    // ]
     useEffect(() => {
         const fetchPosts = async () => {
           try {
@@ -37,7 +41,7 @@ const Posts = () => {
     return (
         <div className="flex-col">
             <h1>Posts</h1>
-            {posts.map((post:Post)=>(
+            {posts.map((post:PostFields)=>(
                 <Link href={`/posts/${post.slug}`}>
                      {post.title}
                 </Link>

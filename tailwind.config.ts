@@ -14,6 +14,12 @@ const config: Config = {
       tertiary: '#FFFFFF',
 
     },
+    fontSize: {
+      sm: '1rem',
+      base: '1.5rem',
+      lg: '2rem',
+      xl: '4rem',
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
