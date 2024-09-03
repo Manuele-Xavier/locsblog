@@ -1,6 +1,6 @@
 type BannerComponentProps = {
     imageUrl?: string;  
-    description: string; 
+    description?: string; 
   };
   
   const BannerComponent: React.FC<BannerComponentProps> = ({ imageUrl, description }) => {

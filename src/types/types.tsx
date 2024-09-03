@@ -1,12 +1,19 @@
+
 export interface PostFields {
     id?: string;
     title: string;
     content?: string;
     slug:string;
     acfPosts:ACFPosts;
+    categories:Edges;
  
   }
-
+  export interface Edges{
+    node:Categories;
+  }
+  export interface Categories{
+    name:string
+  }
   export interface ACFPosts{
     background?: Image;
     description?: string

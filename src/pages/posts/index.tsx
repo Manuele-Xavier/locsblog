@@ -18,6 +18,7 @@ const GET_POSTS = gql`
   }
 }
 `;
+
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     // const posts: Post[] = [
