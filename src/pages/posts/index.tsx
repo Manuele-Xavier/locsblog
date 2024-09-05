@@ -3,17 +3,23 @@ import { useEffect, useState } from 'react';
 import { PostFields } from "@/types/types"
 import { gql } from '@apollo/client';
 import client from "@/apollo-client";
-
+import CardPost from "@/components/cardPost";
 
 const GET_POSTS = gql`
  query MyQuery {
   posts {
-    nodes {
-      date
-      title
-      content
+      nodes {
       id
+      title
       slug
+      acfPosts {
+        background {
+          node {
+            sourceUrl
+          }
+        }
+        description
+      }
     }
   }
 }
@@ -21,10 +27,7 @@ const GET_POSTS = gql`
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
-    // const posts: Post[] = [
-    //     { id: '1', title: 'First Post', content: 'Content of the first post' },
-    //     { id: '2', title: 'Second Post', content: 'Content of the second post' },
-    // ]
+    
     useEffect(() => {
         const fetchPosts = async () => {
           try {
@@ -40,13 +43,17 @@ const Posts = () => {
         fetchPosts(); 
       }, [client]);
     return (
-        <div className="flex-col">
-            <h1>Posts</h1>
-            {posts.map((post:PostFields)=>(
-                <Link href={`/posts/${post.slug}`}>
-                     {post.title}
-                </Link>
-            ))}
+        <div className="container">
+              {posts.length > 0 && (
+            <div className="py-[6rem] pt-4">
+
+              <div className="grid grid-cols-4 gap-12">
+                {posts.map((post: PostFields, index: number) => (
+                  <CardPost imageUrl={post.acfPosts.background?.node?.sourceUrl} title={post.title} description={post.acfPosts.description} slug={post.slug} key={index} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
     )
 }

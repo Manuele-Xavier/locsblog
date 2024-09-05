@@ -40,6 +40,7 @@ export const GET_POSTS_HOME = gql`
   query MyQuery {
     posts(first: 4, where: { orderby: { field: DATE, order: DESC } }) {
       nodes {
+        id
         title
         slug
         date

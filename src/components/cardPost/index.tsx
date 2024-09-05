@@ -6,10 +6,11 @@ type CardPostsProps = {
     title?: string
     description?: string
     slug?: string
+    key?:any
 };
-const CardPost: React.FC<CardPostsProps> = ({ imageUrl, description, title, slug }) => {
+const CardPost: React.FC<CardPostsProps> = ({ imageUrl, description, title, slug, key }) => {
     return (
-        <div>
+        <div key={key}>
             <Link href={`/posts/${slug}`}>
                 <img src={imageUrl} alt={description} className="w-full h-[15rem] rounded-[30px] object-cover mb-4"/>
             </Link>
